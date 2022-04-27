@@ -36,6 +36,6 @@ for i in `seq 1 $commits`;
 do
 	echo $RANDOM | md5sum > $pushfile
 	git add *
-	git commit * -m $cmsg
+	git commit * -m "$cmsg"
 	git push
 done
