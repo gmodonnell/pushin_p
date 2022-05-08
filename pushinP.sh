@@ -47,7 +47,7 @@ do
 	git add *
 	git commit * -m "$cmsg"
 	git push
-	if [ $lyrnum -ge $lyrlength ] 
+	if [ "$lyrnum" -ge "$lyrlength" ] 
 	then
 	    sed -i "s/^${lyrnum}/2/g" $lyricfile
 	else
