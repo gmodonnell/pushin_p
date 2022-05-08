@@ -7,12 +7,13 @@
 # There is an 85% chance I code lightly (1-10 commits) on any given day.
 chance=$((1 + $RANDOM % 100))
 fuck=p
+shit=1
 # CHANGE THESE TO YOUR REPO FILES
 # lyricfile is your lyrics
 # repofile is the directory of repos on your machine
 lyricfile='/home/didact/Documents/gitRepos/pushin_p/lyrics.txt'
 pushfile='/home/didact/Documents/gitRepos/pushin_p/push.txt'
-
+lyrlength=$(wc -l $lyricfile)
 # Determines number of commits that will be made
 # If the roll determines no commits, the program exits
 if [ $chance -gt 95 ]
@@ -35,15 +36,22 @@ do
 	echo $RANDOM | md5sum > $pushfile
 	#Check file index line, pull lyric and increment
 	lyrnum=$(sed -n '1p' "$lyricfile")
-	lyrnum="$lyrnum$fuck"
+	sedmes="$lyrnum$fuck"
 	echo $lyrnum is lyrnum
 	# The commit message is generated
-    cmsg=$(sed -n "$lyrnum" "$lyricfile")
+    cmsg=$(sed -n "$sedmes" "$lyricfile")
     echo $cmsg is cmsg
-    nlyrnum=3
+    nlyrnum=$(($lyrnum+$shit))
     echo $nlyrnum is the new lyric increment
     sed -i "s/^${lyrnum}/$nlyrnum/g" $lyricfile
 	git add *
 	git commit * -m "$cmsg"
 	git push
+	
+	if [ $lyrnum -ge $lyrlength ] 
+	then
+	    sed -i "s/^${lyrnum}/2/g" $lyricfile
+	else
+	    :
+	fi
 done
