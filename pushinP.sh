@@ -11,8 +11,8 @@ shit=1
 # CHANGE THESE TO YOUR REPO FILES
 # lyricfile is your lyrics
 # repofile is the directory of repos on your machine
-lyricfile='/home/didact/Documents/gitRepos/pushin_p/lyrics.txt'
-pushfile='/home/didact/Documents/gitRepos/pushin_p/push.txt'
+lyricfile='~/Documents/gitRepos/pushin_p/lyrics.txt'
+pushfile='~/Documents/gitRepos/pushin_p/push.txt'
 lyrlength=$(wc -l $lyricfile)
 # Determines number of commits that will be made
 # If the roll determines no commits, the program exits
